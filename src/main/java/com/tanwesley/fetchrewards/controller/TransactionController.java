@@ -3,7 +3,7 @@ package com.tanwesley.fetchrewards.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tanwesley.fetchrewards.model.SpendRequest;
 import com.tanwesley.fetchrewards.model.TransactionReport;
-import exception.NegativePointException;
+import com.tanwesley.fetchrewards.exception.NegativePointException;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.databind.*;

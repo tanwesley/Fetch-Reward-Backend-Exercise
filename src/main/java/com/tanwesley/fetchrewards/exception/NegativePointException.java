@@ -1,4 +1,4 @@
-package exception;
+package com.tanwesley.fetchrewards.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
