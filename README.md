@@ -1,9 +1,10 @@
 # Fetch-Reward-Backend-Exercise
 A simple Spring Boot application that keeps track of a user's points balance, with routes to add transactions and spend points from the available balance.
 
-## Framework Used:
-Spring Boot 2.6.6
-
+## Frameworks and Tools Used:
+* Spring Boot 2.6.6
+* jUnit 5
+* Jackson API 2.12.5
 ## Requirements
 1. Java 17
      * Download link: https://www.oracle.com/java/technologies/downloads/
