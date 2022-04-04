@@ -39,7 +39,7 @@ curl -H "Content-Type: application/json" -d "{ \"payer\": \"DANNON\", \"points\"
 
 #### Spend points (/spendPoints)
 ```
-curl -H "Content-Type: application/json" -d "{ \"points\": 1000 }" http://localhost:8080/spendPoints
+curl -H "Content-Type: application/json" -d "{ \"points\": 100 }" http://localhost:8080/spendPoints
 ```
 
 
