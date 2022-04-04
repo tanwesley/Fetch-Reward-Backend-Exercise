@@ -35,14 +35,14 @@ Now open a new command terminal to execute commands that send requests to the ap
  
 
 #### Add a transaction (/addTransaction)
-** This command sends a POST request to the /addTransaction route and adds a new transaction with payer, points, and timestamp fields.
+    * This command sends a POST request to the /addTransaction route and adds a new transaction with payer, points, and timestamp fields.
 
 ```
 curl -X POST -H "Content-Type: application/json" -d "{ \"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2020-11-02T14:00:00Z\" }" http://localhost:8080/addTransaction
 ```
 
 #### Spend points (/spendPoints)
-** This command sends a PUT request to /spendPoints and spends points from payers given the user has enough points in their balance. The transactions with the oldest timestamps are the first to have points drawn from.
+    * This command sends a PUT request to /spendPoints and spends points from payers given the user has enough points in their balance. The transactions with the oldest timestamps are the first to have points drawn from.
 
 ```
 curl -X PUT -H "Content-Type: application/json" -d "{ \"points\": 100 }" http://localhost:8080/spendPoints
@@ -50,7 +50,7 @@ curl -X PUT -H "Content-Type: application/json" -d "{ \"points\": 100 }" http://
 
 
 #### Get point balances per payer (/payerPointBalances)
-** This command sends a GET request to /payerPointBalances and returns a JSON response with the user's point balances per payer.
+    * This command sends a GET request to /payerPointBalances and returns a JSON response with the user's point balances per payer.
 
 ```
 curl http://localhost:8080/payerPointBalances
