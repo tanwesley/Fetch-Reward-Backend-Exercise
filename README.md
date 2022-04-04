@@ -34,12 +34,12 @@ Now open a new command terminal to execute commands that send requests to the ap
 #### Add a transaction (/addTransaction)
 
 ```
-curl -H "Content-Type: application/json" -d "{ \"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2020-11-02T14:00:00Z\" }" http://localhost:8080/addTransaction
+curl -X POST -H "Content-Type: application/json" -d "{ \"payer\": \"DANNON\", \"points\": 1000, \"timestamp\": \"2020-11-02T14:00:00Z\" }" http://localhost:8080/addTransaction
 ```
 
 #### Spend points (/spendPoints)
 ```
-curl -H "Content-Type: application/json" -d "{ \"points\": 100 }" http://localhost:8080/spendPoints
+curl -X PUT -H "Content-Type: application/json" -d "{ \"points\": 100 }" http://localhost:8080/spendPoints
 ```
 
 
