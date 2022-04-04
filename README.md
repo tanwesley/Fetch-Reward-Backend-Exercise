@@ -51,6 +51,7 @@ curl -X PUT -H "Content-Type: application/json" -d "{ \"points\": 100 }" http://
 
 #### Get point balances per payer (/payerPointBalances)
    * This command sends a GET request to /payerPointBalances and returns a JSON response with the user's point balances per payer.
+   * You can also open http://localhost:8080/payerPointBalances in your browser to view the list.
 
 ```
 curl http://localhost:8080/payerPointBalances
