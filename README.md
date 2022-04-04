@@ -6,7 +6,9 @@ Spring Boot 2.6.6
 
 ## Requirements
 1. Java 17
-2. Maven 3.8.5
+ * Download link: https://www.oracle.com/java/technologies/downloads/
+3. Maven 3.8.5
+ * Download link: https://maven.apache.org/download.cgi
 
 ## How to use
 
