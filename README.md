@@ -12,6 +12,11 @@ Spring Boot 2.6.6
 
 
 ### Installation
+1. Open command line terminal.
+2. Navigate to a directory to copy the project into.
+3. Execute the following line in the command terminal.
+ *```git clone https://github.com/tanwesley/Fetch-Reward-Backend-Exercise```
+
 
 ### Running the Spring application 
 1. Open the command line terminal
