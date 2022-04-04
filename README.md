@@ -1,9 +1,15 @@
 # Fetch-Reward-Backend-Exercise
 A simple Spring Boot application that keeps track of a user's points balance, with routes to add transactions and spend points from the available balance.
 
+## Framework Used:
+Spring Boot 2.6.6
+
 ## Requirements
+1. Java 17
+2. Maven 3.8.5
 
 ## How to use
+
 
 ### Installation
 
