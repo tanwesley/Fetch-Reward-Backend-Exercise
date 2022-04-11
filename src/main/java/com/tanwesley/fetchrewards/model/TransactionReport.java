@@ -33,7 +33,7 @@ public class TransactionReport {
         this.points = points;
     }
 
-    // NOTE: The getter for timestamp is marked with the @JsonIgnore annotation so that the datetime is included in the
+    // NOTE: The getter for timestamp is marked with the @JsonIgnore annotation so that the datetime is not included in the
     // JSON response body.
     // This was done to comply with how the assignment wants the response from a /spendPoints route call to be formatted.
     @JsonIgnore
