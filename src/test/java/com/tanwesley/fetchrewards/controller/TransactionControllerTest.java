@@ -39,23 +39,25 @@ class TransactionControllerTest {
 
     @Test
     void addAndSpendFromOneTransaction() {
-        controller.addTransaction(testTransaction2);
-        controller.spendPoints(new SpendRequest(100));
+        controller.addTransaction(testTransaction2);    // Adding 2000 points from TEST PAYER 2
+        controller.spendPoints(new SpendRequest(100));  // Send a spend request for 100 points
 
-        // test for total points updating correctly
+        // test for total points updating correctly, we should have 1900 points remaining.
         assertEquals(1900, controller.getTotalPoints());
     }
 
     @Test
     void addNegativeTransaction() {
-        controller.addTransaction(testTransaction2);
-        controller.addTransaction(testTransaction3);
+        controller.addTransaction(testTransaction2);    // Add 2000 points from TEST PAYER 2
+        controller.addTransaction(testTransaction3);    // ADD a -1000 point transaction from TEST PAYER 3
 
         assertEquals(1000, controller.getTotalPoints());
     }
 
     @Test
     void timeStampSortingTest() {
+        // Test that the transactions in the priority queue will be sorted correctly according to the timestamp.
+
         controller.addTransaction(testTransaction1);    // january 1, 2022 12:01AM
         controller.addTransaction(testTransaction2);    // january 1, 2022 12:00AM
         controller.addTransaction(testTransaction3);    // february 1, 2022 12:00AM
