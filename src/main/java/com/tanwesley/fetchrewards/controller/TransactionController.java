@@ -18,7 +18,6 @@ public class TransactionController {
     // ObjectMapper for JSON conversion and formatting
     private ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
-
     // Total points from all payers
     private int totalPoints = 0;
 
@@ -55,7 +54,13 @@ public class TransactionController {
         totalPoints += transaction.getPoints();
     }
 
-    // Submitting a spend request
+
+    /*
+    // Submitting a spend request.
+    // @RequestBody annotation takes the JSON request body, and calls the SpendRequest class' constructor.
+    // The SpendRequest() constructor is marked with the @JsonCreator annotation, which takes the JSON request body and
+    // converts the JSON into a SpendRequest object.
+    */
     @PutMapping("/spendPoints")
     public List<TransactionReport> spendPoints(@RequestBody SpendRequest request) throws NegativePointException {
         int pointsToSpend = request.getPoints();
