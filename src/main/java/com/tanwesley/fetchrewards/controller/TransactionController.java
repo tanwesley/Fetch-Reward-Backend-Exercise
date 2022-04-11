@@ -23,7 +23,7 @@ public class TransactionController {
     private int totalPoints = 0;
 
     // HashMap to keep track of payer point balances.
-    // <Payer, Points>
+    // <key = Payer, value = Points>
     private Map<String, Integer> payerPointBalances = new HashMap<>();
 
 
@@ -49,8 +49,9 @@ public class TransactionController {
 
         transactionReports.add(transaction);
 
-        // Map payer with updated point balance, default value set to 0 if key does not yet exist in the HashMap.
-        updateTransactionHashMap(transaction);
+        // Map payer with updated point balance.
+        updatePayerPointBalancesMap(transaction);
+
         totalPoints += transaction.getPoints();
     }
 
@@ -65,19 +66,32 @@ public class TransactionController {
         // A hashmap to keep track of how many points are taken per payer to fulfill the spend request.
         Map<String, Integer> spendReportMap = new HashMap<>();
 
+
+        // Start a while loop that goes until there are no more points to spend from the spend request.
         while (pointsToSpend != 0) {
+            // First, the transaction with the oldest timestamp is polled from the priority queue.
             TransactionReport oldestTransaction = transactionReports.poll();
 
+            // If there are no transactions in the priority queue, the method will throw an error.
             if (oldestTransaction == null) throw new NegativePointException("ERROR: Not enough points in balance");
 
+            // Initialize an int variable to hold the amount of points to subtract from the oldest transaction in the
+            // current iteration of the loop.
             int pointsToUseFromOldest;
 
             if (oldestTransaction.getPoints() <= pointsToSpend) {
                 pointsToUseFromOldest = oldestTransaction.getPoints();
             } else {
+                // If there are more points in the oldest transaction than points in the spend request, we subtract
+                // the points to spend from the oldest transaction's point balance.
                 pointsToUseFromOldest = pointsToSpend;
-
-                // update transaction report if not all funds are used from a transaction
+                /*
+                Update transaction report if not all funds are used from a transaction.
+                Because we have polled the oldest transaction out of the priority queue but not all points have been
+                used from this transaction, we need to add that transaction back in with the remaining points.
+                The transaction added back will be marked with the original timestamp in order to preserve the order
+                within the priority queue.
+                */
                 transactionReports.add(new TransactionReport(oldestTransaction.getPayer(),
                         oldestTransaction.getPoints() - pointsToUseFromOldest, oldestTransaction.getTimestamp()));
             }
@@ -90,8 +104,8 @@ public class TransactionController {
 
         List<TransactionReport> spendReportsList = new ArrayList<>();
 
-        // Populate array list of spend reports to return as a JSON list using data from the spendReportMap hashmap.
-        // Spend reports are marked with the current timestamp.
+        // Populate an array list of spend reports to return as a JSON list using data from the spendReportMap hashmap.
+        // Spend reports are marked with a timestamp of the current time that the spend request is executed.
         spendReportMap.forEach(
                 (key, value) -> spendReportsList.add(new TransactionReport(key, value, LocalDateTime.now())));
 
@@ -117,14 +131,14 @@ public class TransactionController {
         return transactionReports;
     }
 
-    private void updateTransactionHashMap(TransactionReport transaction) {
+    private void updatePayerPointBalancesMap(TransactionReport transaction) {
 
+        // Updates the hashmap tracking points per payer. The default value is set to 0 if key does not yet exist in the HashMap.
         payerPointBalances.put(transaction.getPayer(),
                 payerPointBalances.getOrDefault(transaction.getPayer(), 0) + transaction.getPoints());
 
         // remove any payers with 0 balances
         payerPointBalances.values().removeIf(f -> f == 0f);
     }
-
 
 }
