@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 public class SpendRequest {
     private int points;
 
-    //Converts JSON request into a Java object
+    //Converts JSON request into a Java object. @JsonCreator annotation allows points to be specified when calling
+    // the constructor for test purposes.
     @JsonCreator
     public SpendRequest(int points) {
         this.points = points;
