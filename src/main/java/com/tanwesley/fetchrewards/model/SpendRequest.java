@@ -2,11 +2,11 @@ package com.tanwesley.fetchrewards.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-// Wrapper class for when the user makes a spend request
+// Wrapper class for when the user makes a spend request.
 public class SpendRequest {
     private int points;
 
-    //Converts JSON request into a POJO
+    //Converts JSON request into a Java object
     @JsonCreator
     public SpendRequest(int points) {
         this.points = points;

@@ -59,7 +59,7 @@ public class TransactionController {
     // Submitting a spend request.
     // @RequestBody annotation takes the JSON request body, and calls the SpendRequest class' constructor.
     // The SpendRequest() constructor is marked with the @JsonCreator annotation, which takes the JSON request body and
-    // converts the JSON into a SpendRequest object.
+    // converts the JSON into a SpendRequest object that can be used in the program.
     */
     @PutMapping("/spendPoints")
     public List<TransactionReport> spendPoints(@RequestBody SpendRequest request) throws NegativePointException {
