@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tanwesley.fetchrewards.model.SpendRequest;
 import com.tanwesley.fetchrewards.model.TransactionReport;
 import com.tanwesley.fetchrewards.exception.NegativePointException;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.databind.*;
@@ -24,7 +25,6 @@ public class TransactionController {
     // HashMap to keep track of payer point balances.
     // <key = Payer, value = Points>
     private Map<String, Integer> payerPointBalances = new HashMap<>();
-
 
     // A priority queue to keep track of transaction reports
     private Queue<TransactionReport> transactionReports = new PriorityQueue<>(new Comparator<TransactionReport>() {
@@ -57,7 +57,7 @@ public class TransactionController {
 
 
     // Submitting a spend request.
-    @PutMapping("/spendPoints")
+    @PutMapping(value = "/spendPoints", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TransactionReport> spendPoints(@RequestBody SpendRequest request) throws NegativePointException {
         int pointsToSpend = request.getPoints();
 
@@ -119,10 +119,13 @@ public class TransactionController {
     }
 
     // Return point balances per payer in JSON format
-    @GetMapping("/payerPointBalances")
+    @GetMapping(value = "/payerPointBalances", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getPayerPointBalances() throws JsonProcessingException {
         return objectMapper.writeValueAsString(payerPointBalances);
     }
+
+
+    //
 
     public int getTotalPoints() {
         return totalPoints;
